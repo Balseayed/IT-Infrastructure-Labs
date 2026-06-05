@@ -138,7 +138,7 @@ During the lab, I faced an issue when trying to move an Organizational Unit. Act
 
 This issue was related to object protection settings in Active Directory.
 
-![Access Denied Moving OU](10-AccessDenied-moving-OU.png)
+![Access Denied Moving OU](Screenshots/10-AccessDenied-moving-OU.png)
 
 To investigate the issue, I enabled Advanced Features in Active Directory Users and Computers and checked the Object tab.
 
