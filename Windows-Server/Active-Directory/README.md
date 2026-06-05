@@ -165,7 +165,6 @@ After reviewing the object protection setting, I understood how Active Directory
 
 ## Notes
 
-This lab is still part of my learning and practice path. The purpose is to build a better understanding of Windows Server infrastructure and document the steps in a clear and practical way.
+This lab focuses on the Active Directory foundation of the Windows Server environment.
 
-Future sections will include Group Policy, File Server, NTFS permissions, mapped drives, backup, and restore testing.
-
+Other related sections in this project cover Group Policy, File Server permissions, mapped drives, and Backup and Recovery.
