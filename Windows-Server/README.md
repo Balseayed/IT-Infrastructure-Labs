@@ -7,7 +7,7 @@ The lab covers core Windows Server administration tasks such as Active Directory
 ## Lab Sections
 
 - [Active Directory](Active-Directory)
-- [Group Policy](Group-Policy)
+- [GPO](GPO)
 - [File Server](File-Server)
 - [Backup and Recovery](Backup-Recovery)
 
