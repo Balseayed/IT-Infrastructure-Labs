@@ -82,8 +82,7 @@ After applying the policy, the mapped drive appeared successfully on the client 
 ## Local Administrator Deployment Test
 
 I tested using Group Policy to deploy a local administrator configuration to a domain-joined client machine.
-
-The purpose of this test was to understand how Group Policy can be used to automate local computer configuration across multiple machines.
+This test shows how Group Policy can be used to deploy and run a script on domain-joined client machines to automate local computer configuration.
 
 ![Local Admin Logon Script](Screenshots/08-local-admin-logon-script.png)
 
