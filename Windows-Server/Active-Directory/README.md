@@ -144,6 +144,8 @@ To investigate the issue, I enabled Advanced Features in Active Directory Users 
 
 After reviewing the object protection setting, I understood how Active Directory can prevent accidental deletion or movement of protected objects.
 
+![Access Denied Moving OU](Screenshots/11-enable-moving-OU.png)
+
 ---
 
 ## Skills Practiced
