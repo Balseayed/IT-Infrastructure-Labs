@@ -12,15 +12,15 @@ In this lab, I worked with forward lookup records, reverse lookup records, CNAME
 
 ## Lab Environment
 
-| Component          | Details                  |
-| ------------------ | ------------------------ |
-| Domain             | Days.local               |
-| DNS Server         | DC01                     |
-| Domain Controller  | DC01                     |
-| Client Machine     | IT-PC                    |
-| DNS Zone           | Days.local               |
-| Reverse Zone       | 1.168.192.in-addr.arpa   |
-| Tool               | DNS Manager              |
+| Component | Details |
+|---|---|
+| Domain | Days.local |
+| DNS Server | DC01 |
+| Domain Controller | DC01 |
+| Client Machine | IT-PC |
+| DNS Zone | Days.local |
+| Reverse Zone | 1.168.192.in-addr.arpa |
+| Tool | DNS Manager |
 | Verification Tools | nslookup, ping, ipconfig |
 
 ---
