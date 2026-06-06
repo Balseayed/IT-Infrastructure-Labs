@@ -13,4 +13,6 @@ This repository documents my hands-on labs in IT infrastructure, Windows Server,
 - Group Policy
 - File Server
 - Backup and Recovery
+- [DNS](DNS)
+- [DHCP](DHCP)
 - Infrastructure Support
