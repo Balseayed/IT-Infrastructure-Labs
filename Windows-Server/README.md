@@ -10,6 +10,7 @@ The lab covers core Windows Server administration tasks such as Active Directory
 - [GPO](GPO)
 - [File Server](File-Server)
 - [Backup and Recovery](Backup-Recovery)
+- [DNS](DNS)
 
 ## What This Project Covers
 
