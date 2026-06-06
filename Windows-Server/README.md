@@ -11,6 +11,7 @@ The lab covers core Windows Server administration tasks such as Active Directory
 - [File Server](File-Server)
 - [Backup and Recovery](Backup-Recovery)
 - [DNS](DNS)
+- [DHCP](DHCP).
 
 ## What This Project Covers
 
