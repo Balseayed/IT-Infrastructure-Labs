@@ -42,9 +42,8 @@ For example, Helpdesk may need to reset user passwords, workstation support may 
 
 Giving Domain Admin access for all these tasks is not a good practice. So in this lab, I built a controlled access model where each IT role gets only the permissions it needs.
 
-```text
-Give each IT role only the permissions it needs.
-```
+> Give each IT role only the permissions it needs.
+
 
 ---
 
