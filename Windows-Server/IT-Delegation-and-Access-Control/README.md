@@ -57,14 +57,6 @@ For IT staff, I created two types of accounts:
 | Daily account      | `jaffar.sheik` | Normal daily work       |
 | Privileged account | `pa-it.jaffar` | IT administrative tasks |
 
-I used the same idea for different IT roles:
-
-| Role                | Example Account |
-| ------------------- | --------------- |
-| Helpdesk            | `pa-hd.almousa` |
-| IT Admin            | `pa-it.jaffar`  |
-| Workstation Support | `pa-ws.danish`  |
-
 The daily account is used for normal work such as email, browsing, Teams, and opening links or attachments.
 
 This account is more exposed to risks like:
@@ -77,13 +69,22 @@ This account is more exposed to risks like:
 
 Because of that, I did not assign admin permissions to daily accounts.
 
-If a daily account gets compromised, the attacker should not automatically get IT admin permissions. Administrative permissions were assigned only to privileged IT accounts through security groups.
+If a daily account gets compromised, the attacker should not automatically get IT admin permissions.
 
-![IT OU Structure](./Screenshots/01-it-ou-structure.png)
+Administrative permissions were assigned only to separate privileged accounts. These permissions are not based on the account name itself. They depend on the security group membership and the delegated permissions assigned to each group.
+
+| Role                | Privileged Account | Access Based On                 |
+| ------------------- | ------------------ | ------------------------------- |
+| Helpdesk            | `pa-hd.almousa`    | `GG_Helpdesk_AD_Delegation`     |
+| IT Admin            | `pa-it.jaffar`     | `GG_IT_AD_Operators_Delegation` |
+| Workstation Support | `pa-ws.danish`     | `GG_IT_Workstation_LocalAdmins` |
+
 
 ---
 
 ## AD OU and Security Group Design
+
+![IT OU Structure](./Screenshots/01-it-ou-structure.png)
 
 I created a clear OU structure for users, computers, and IT access groups.
 
