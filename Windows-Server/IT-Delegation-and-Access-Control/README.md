@@ -2,22 +2,20 @@
 
 ## Overview
 
-In this lab, I designed a simple IT delegation model in Active Directory.
+In this lab, I built a simple IT delegation model in Active Directory.
 
-The goal was not to give all IT users full Domain Admin permissions.
-Instead, I separated IT accounts by role, created security groups, delegated only the required permissions, and verified the results with real tests.
+The main goal was to avoid giving all IT users full Domain Admin permissions. Instead, I separated IT accounts by role, created security groups, delegated only the required permissions, and tested both allowed and denied actions.
 
-The lab focuses on:
+This lab covers:
 
-* Separating daily IT accounts from privileged IT accounts
-* Creating IT role-based security groups
-* Managing AD from an IT workstation using RSAT / ADUC
-* Delegating domain join permissions
-* Delegating Helpdesk permissions
-* Delegating IT Admin / AD Operator permissions
-* Applying workstation access using Group Policy
-* Testing allowed and denied actions
-* Validating changes using Event Viewer and `gpresult`
+* Daily and privileged IT account separation
+* Role-based security groups
+* RSAT / ADUC management from an IT workstation
+* Domain join delegation
+* Helpdesk delegation
+* IT Admin / AD Operator delegation
+* Workstation access using Group Policy
+* Event Viewer and `gpresult` validation
 
 ---
 
@@ -37,18 +35,11 @@ The lab focuses on:
 
 ## Lab Idea
 
-In many environments, IT users need different levels of access.
+In real IT environments, not every IT user should have the same level of access.
 
-For example:
+For example, Helpdesk may need to reset user passwords, workstation support may need to join computers to the domain, and IT Admins may need to create or disable normal users.
 
-* Helpdesk may need to reset user passwords.
-* Workstation support may need to join computers to the domain.
-* IT Admin may need to create or disable normal users.
-* Not everyone should have Domain Admin access.
-
-So I built this lab to test a more controlled access model.
-
-The main idea is:
+Giving Domain Admin access for all these tasks is not a good practice. For this reason, I created a role-based access model where each IT role gets only the permissions needed for its job.
 
 ```text
 Give each IT role only the permissions it needs.
@@ -58,8 +49,6 @@ Give each IT role only the permissions it needs.
 
 ## IT Account Model
 
-### What I did
-
 For IT staff, I created two types of accounts:
 
 | Account Type       | Example        | Usage                   |
@@ -67,7 +56,7 @@ For IT staff, I created two types of accounts:
 | Daily account      | `jaffar.sheik` | Normal daily work       |
 | Privileged account | `pa-it.jaffar` | IT administrative tasks |
 
-I used the same idea for different IT roles:
+Examples of privileged accounts used in this lab:
 
 | Role                | Example Account |
 | ------------------- | --------------- |
@@ -75,25 +64,11 @@ I used the same idea for different IT roles:
 | IT Admin            | `pa-it.jaffar`  |
 | Workstation Support | `pa-ws.danish`  |
 
-### Why I did it
+The daily account is used for normal work such as email, browsing, Teams, and opening links or attachments. This type of account is more exposed to phishing emails, malicious links, unsafe attachments, browser attacks, and normal user mistakes.
 
-The daily account is used for normal work such as email, browsing, Teams, and opening links or attachments.
+Because of that, I did not assign administrative permissions to daily accounts. If a daily account gets compromised, the attacker should not automatically get IT admin permissions.
 
-This account is more exposed to risks like:
-
-* Phishing emails
-* Malicious links
-* Unsafe attachments
-* Browser-based attacks
-* User mistakes
-
-Because of that, I did not assign admin permissions to daily accounts.
-
-If a daily account gets compromised, the attacker should not automatically get IT admin permissions.
-
-### Result
-
-Administrative permissions were assigned only to privileged IT accounts and security groups.
+Administrative access was assigned only to privileged accounts through security groups.
 
 ![IT OU Structure](./Screenshots/01-it-ou-structure.png)
 
@@ -101,38 +76,15 @@ Administrative permissions were assigned only to privileged IT accounts and secu
 
 ## AD OU and Security Group Design
 
-### What I did
+I created an OU structure to separate users, computers, and IT access groups.
 
-I created a clear OU structure for users, computers, and IT access groups.
-
-The IT accounts were separated into:
-
-* Standard accounts
-* Admin accounts
-
-Computers were separated into:
-
-* Regular computers
-* Management computers
+IT accounts were separated into standard accounts and admin accounts. Computers were also separated into regular computers and management computers.
 
 ![Regular Computer OU Structure](./Screenshots/03-regular-ou-computer-objects.png)
 
-I also created IT security groups to control access by role.
+I also created security groups for different IT roles instead of assigning permissions directly to users.
 
 ![IT Access Security Groups](./Screenshots/02-it-access-security-groups.png)
-
-### Why I did it
-
-Using groups is better than assigning permissions directly to users.
-
-It makes access easier to manage because:
-
-* Users can be added or removed from groups.
-* Permissions stay organized.
-* Each group has a clear purpose.
-* It is easier to audit who has access.
-
-### Main Groups
 
 | Group                           | Purpose                                                               |
 | ------------------------------- | --------------------------------------------------------------------- |
@@ -141,13 +93,13 @@ It makes access easier to manage because:
 | `GG_IT_Workstation_LocalAdmins` | Local admin access on regular workstations                            |
 | `GG_IT_Workstation_RDP`         | Used to separate Remote Desktop access for workstation support        |
 
+Using groups makes the access model easier to manage, review, and audit.
+
 ---
 
 ## RSAT / ADUC Management from IT Workstation
 
-### What I did
-
-I used RSAT / Active Directory Users and Computers from an IT workstation instead of logging directly into the Domain Controller.
+AD administration was tested from an IT workstation using RSAT / Active Directory Users and Computers.
 
 The IT workstation used in this lab was:
 
@@ -155,7 +107,7 @@ The IT workstation used in this lab was:
 DYS-IT-HD01
 ```
 
-I opened ADUC using a delegated Helpdesk account:
+ADUC was opened using a delegated Helpdesk account:
 
 ```cmd
 runas /user:pa-hd.almousa@days.local "mmc dsa.msc"
@@ -163,29 +115,13 @@ runas /user:pa-hd.almousa@days.local "mmc dsa.msc"
 
 ![ADUC Run As Helpdesk User](./Screenshots/15-aduc-run-as-helpdesk-user-cmd.png)
 
-### Why I did it
-
-Normal Helpdesk or IT support tasks should not require logging into the Domain Controller.
-
-Using RSAT from an IT workstation is cleaner and safer because:
-
-* The Domain Controller is not used for daily admin work.
-* Helpdesk can work with delegated permissions only.
-* The admin task is separated from normal daily user access.
-
-### Result
-
-Helpdesk was able to open ADUC from the IT workstation using a delegated privileged account.
+This keeps normal Helpdesk work away from direct Domain Controller login. The Helpdesk user can perform delegated tasks from an IT workstation without needing full domain privileges.
 
 ---
 
 ## Workstation Support Delegation for Domain Join
 
-### What I did
-
-I delegated limited permissions to allow the workstation support group to join new computers to the domain.
-
-The permission was applied on the default `Computers` container.
+The workstation support group was delegated permission to join new computers to the domain.
 
 The delegated group was:
 
@@ -199,27 +135,19 @@ The important permission was:
 Create Computer objects
 ```
 
+The permission was applied on the default `Computers` container.
+
 ![Computers Container Domain Join Permission](./Screenshots/20-computers-container-domain-join-permissions.png)
 
-### Why I did it
+This allows workstation support to join computers to the domain without using a Domain Admin account.
 
-In a real IT environment, support staff may need to join new computers to the domain.
-
-But they should not use Domain Admin accounts for this task.
-
-The goal was to allow domain join without giving full domain privileges.
-
-### Result
-
-The workstation support account successfully joined a new computer to the domain.
-
-The account used for the test was:
+The test was done using:
 
 ```text
 pa-ws.danish
 ```
 
-The computer joined to the domain was:
+The new computer was:
 
 ```text
 DYS-HR-03
@@ -227,15 +155,13 @@ DYS-HR-03
 
 ![Domain Join Success](./Screenshots/18-domain-join-success-using-ws-account.png)
 
-### Validation
-
 The domain join action was validated in Event Viewer using Event ID `4741`.
 
 ```text
 Event ID 4741 = A computer account was created
 ```
 
-The event showed that `pa-ws.danish` created the computer account.
+The event showed that the delegated workstation support account created the computer account.
 
 ![Event 4741 Computer Account Created](./Screenshots/19-event-4741-computer-account-created.png)
 
@@ -243,9 +169,7 @@ The event showed that `pa-ws.danish` created the computer account.
 
 ## Helpdesk Computer Object Movement
 
-### What I did
-
-After the computer was joined to the domain, I delegated permissions for Helpdesk to move computer objects from the default `Computers` container to the `Regular` OU.
+After the computer was joined to the domain, Helpdesk needed to move the computer object from the default `Computers` container to the correct OU.
 
 The delegated group was:
 
@@ -253,19 +177,11 @@ The delegated group was:
 GG_Helpdesk_AD_Delegation
 ```
 
-![Helpdesk Computer Move Permission](./Screenshots//21-regular-ou-computer-move-permissions.png)
+![Helpdesk Computer Move Permission](./Screenshots/21-regular-ou-computer-move-permissions.png)
 
-### Why I did it
+This allows Helpdesk to organize regular workstation objects without giving them access to manage Management computers.
 
-When a new workstation is joined to the domain, it may appear first in the default `Computers` container.
-
-Helpdesk should be able to organize normal workstations and move them to the correct OU.
-
-But Helpdesk should not be able to manage Management computers.
-
-### Result
-
-Helpdesk successfully moved the computer object:
+The test computer was moved:
 
 ```text
 DYS-HR-03
@@ -283,8 +199,6 @@ to:
 OU=Regular
 ```
 
-### Validation
-
 The move action was verified using Event ID `5139`.
 
 ```text
@@ -293,25 +207,17 @@ Event ID 5139 = A directory service object was moved
 
 ![Event 5139 Computer Object Moved](./Screenshots/22-event-5139-computer-object-moved.png)
 
-### Denied Test
-
-I also tested moving the same computer object to the `Management` OU.
-
-The action was denied.
+I also tested moving the same computer object to the `Management` OU, and the action was denied.
 
 ![Helpdesk Denied Moving to Management](./Screenshots/23-helpdesk-denied-moving-to-management.png)
 
-This confirms that Helpdesk can manage regular workstation objects but cannot manage Management computers.
+This confirms that Helpdesk can manage regular workstation placement, but cannot manage Management devices.
 
 ---
 
 ## Workstation Access Using Group Policy
 
-### What I did
-
-I created a GPO for regular workstations.
-
-The GPO was linked to the `Regular` computers OU.
+I created a GPO for regular workstations and linked it to the `Regular` computers OU.
 
 The GPO configured:
 
@@ -321,45 +227,27 @@ The GPO configured:
 
 ![Workstation Access GPO Settings](./Screenshots/04-gpo-workstation-it-admin-rd-access.png)
 
-### Why I did it
-
-IT support may need local admin access on regular workstations to troubleshoot issues.
-
-But this access should be controlled by GPO and applied only to the correct OU.
-
-I linked the GPO to the `Regular` OU so the policy does not apply to Management computers or servers.
-
-### Local Admin Result
+The GPO was linked to the `Regular` OU so it applies to normal workstations only. It should not apply to Management computers or servers.
 
 The group `GG_IT_Workstation_LocalAdmins` was added to the local Administrators group on the workstation.
 
 ![Local Admin Group Added by GPO](./Screenshots/05-workstation-local-admin-group-added-by-gpo.png)
 
-### GPO Validation
-
-I verified that the GPO was applied using `gpresult`.
+The GPO application was verified using `gpresult`.
 
 ![GPO Applied Using gpresult](./Screenshots/06-rdp-enabled-by-gpo-result.png)
 
-### Remote Desktop Test
-
-After the policy was applied, I tested Remote Desktop access to the workstation.
+After the policy was applied, Remote Desktop access was tested successfully.
 
 ![Remote Desktop Test Success](./Screenshots/08-rdp-to-workstation-success.png)
 
-### Result
-
-The workstation received the policy successfully.
-
-The IT workstation support group had local admin access on the regular workstation, and Remote Desktop access worked after the GPO was applied.
+The result confirms that the workstation received the policy, the IT workstation support group became local admin on the regular workstation, and Remote Desktop worked after the GPO was applied.
 
 ---
 
 ## Helpdesk User Delegation
 
-### What I did
-
-I delegated password reset permissions to the Helpdesk group on the HR OU.
+The Helpdesk group was delegated password reset permissions on the HR OU.
 
 The delegated group was:
 
@@ -375,25 +263,13 @@ Reset user passwords and force password change at next logon
 
 ![Helpdesk Reset Password Delegation](./Screenshots/11-helpdesk-reset-password-delegation.png)
 
-The permission was also verified from Advanced Security settings.
+The permission was also checked from Advanced Security settings.
 
 ![Helpdesk Reset Password Permission](./Screenshots/12-hr-ou-helpdesk-delegation-entry.png)
-
-### Why I did it
-
-Helpdesk usually needs to reset passwords for normal users.
-
-But Helpdesk should not have full control over all users or privileged IT accounts.
-
-So I delegated only the required task.
-
-### Result
 
 The Helpdesk account successfully reset a password for a normal HR user.
 
 ![Helpdesk Reset Password Success](./Screenshots/16-helpdesk-reset-password-success.png)
-
-### Denied Test
 
 The same Helpdesk account was denied when trying to perform a privileged action on an IT account.
 
@@ -404,8 +280,6 @@ This confirms that Helpdesk has limited access only.
 ---
 
 ## IT Admin / AD Operator Delegation
-
-### What I did
 
 I created a higher IT role for AD Operator tasks.
 
@@ -426,19 +300,7 @@ The permissions were delegated on normal user OUs such as HR.
 
 ![IT Operator Delegation Entry](./Screenshots/13-hr-ou-it-operator-delegation-entry.png)
 
-### Why I did it
-
-IT Admin / AD Operator needs more access than Helpdesk.
-
-But that still does not mean the account should be Domain Admin.
-
-The goal was to give this role enough access to manage normal users, but still block high-risk actions.
-
-### Result
-
-The IT Admin account was able to perform normal user management tasks.
-
-### Validation
+This role has more access than Helpdesk, but it is still not Domain Admin.
 
 User account changes were validated from Event Viewer.
 
@@ -448,13 +310,11 @@ A disabled user action was also validated.
 
 ![IT Admin Disable User Validation Event](./Screenshots/25-it-admin-disable-user-validation-event.png)
 
-### Denied Test
-
 The IT Admin account was denied when trying to delete a user.
 
 ![IT Admin Denied Delete User](./Screenshots/26-it-admin-denied-delete-user.png)
 
-This confirms that the IT Admin role has more access than Helpdesk, but still does not have full control.
+This confirms that the IT Admin role can manage normal users, but still does not have full control.
 
 ---
 
