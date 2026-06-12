@@ -117,28 +117,6 @@ Using groups is better than assigning permissions directly to users because it k
 
 ---
 
-## RSAT / ADUC Management from IT Workstation
-
-I used RSAT / Active Directory Users and Computers from an IT workstation instead of logging directly into the Domain Controller.
-
-The IT workstation used in this lab was:
-
-```text
-DYS-IT-HD01
-```
-
-I opened ADUC using a delegated Helpdesk account:
-
-```cmd
-runas /user:pa-hd.almousa@days.local "mmc dsa.msc"
-```
-
-![ADUC Run As Helpdesk User](./Screenshots/15-aduc-run-as-helpdesk-user-cmd.png)
-
-This helps keep normal Helpdesk and IT support tasks away from direct Domain Controller login. The Helpdesk user can work from an IT workstation using only the delegated permissions.
-
----
-
 ## Workstation Support Delegation for Domain Join
 
 I delegated limited permissions to allow the workstation support group to join new computers to the domain.
@@ -186,6 +164,28 @@ Event ID 4741 = A computer account was created
 The event showed that `pa-ws.danish` created the computer account.
 
 ![Event 4741 Computer Account Created](./Screenshots/19-event-4741-computer-account-created.png)
+
+---
+
+## RSAT / ADUC Management from IT Workstation
+
+I used RSAT / Active Directory Users and Computers from an IT workstation instead of logging directly into the Domain Controller.
+
+The IT workstation used in this lab was:
+
+```text
+DYS-IT-HD01
+```
+
+I opened ADUC using a delegated Helpdesk account:
+
+```cmd
+runas /user:pa-hd.almousa@days.local "mmc dsa.msc"
+```
+
+![ADUC Run As Helpdesk User](./Screenshots/15-aduc-run-as-helpdesk-user-cmd.png)
+
+This helps keep normal Helpdesk and IT support tasks away from direct Domain Controller login. The Helpdesk user can work from an IT workstation using only the delegated permissions.
 
 ---
 
