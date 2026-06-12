@@ -199,7 +199,7 @@ The delegated group was:
 GG_Helpdesk_AD_Delegation
 ```
 
-![Helpdesk Computer Move Permission](./Screenshots/21-computers-container-helpdesk-move-permissions.png)
+![Helpdesk Computer Move Permission](./Screenshots/21-regular-ou-computer-move-permissions.png)
 
 When a new workstation is joined to the domain, it may appear first in the default `Computers` container. Helpdesk should be able to organize normal workstations and move them to the correct OU, but without getting access to manage Management computers.
 
