@@ -67,8 +67,8 @@ This account is more exposed to risks like:
 * User mistakes
 
 Because of that, I did not assign admin permissions to daily accounts.
-
 If a daily account gets compromised, the attacker should not automatically get IT admin permissions.
+
 
 Administrative permissions were assigned only to separate privileged accounts. These permissions are not based on the account name itself. They depend on the security group membership and the delegated permissions assigned to each group.
 
