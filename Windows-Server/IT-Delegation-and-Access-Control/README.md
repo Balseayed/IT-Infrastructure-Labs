@@ -253,7 +253,7 @@ The delegated group was:
 GG_Helpdesk_AD_Delegation
 ```
 
-![Helpdesk Computer Move Permission](./Screenshots/21-computers-container-helpdesk-move-permissions.png)
+![Helpdesk Computer Move Permission](./Screenshots//21-regular-ou-computer-move-permissions.png)
 
 ### Why I did it
 
@@ -339,7 +339,7 @@ The group `GG_IT_Workstation_LocalAdmins` was added to the local Administrators 
 
 I verified that the GPO was applied using `gpresult`.
 
-![GPO Applied Using gpresult](./Screenshots/07-gpresult-workstation-gpo-applied.png)
+![GPO Applied Using gpresult](./Screenshots/06-rdp-enabled-by-gpo-result.png)
 
 ### Remote Desktop Test
 
