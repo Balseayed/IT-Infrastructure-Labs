@@ -8,13 +8,13 @@ The labs focus on core Windows Server administration tasks such as Active Direct
 
 ## Lab Sections
 
-| Lab                              | Description                                                                                          | Link                                            |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| Active Directory                 | Domain Controller setup, OU structure, users, groups, and client domain join                         | [View Lab](./Active-Directory/)                 |
-| Group Policy                     | GPO configuration, workstation policies, restrictions, and client-side validation                    | [View Lab](./GPO/)                              |
-| File Server                      | Shared folders, NTFS permissions, security groups, and mapped drives                                 | [View Lab](./File-Server/)                      |
-| Backup and Recovery              | Windows Server Backup, restore testing, and recovery validation                                      | [View Lab](./Backup-Recovery/)                  |
-| IT Delegation and Access Control | Role-based IT access model using privileged accounts, AD delegation, GPO, RSAT, and audit validation | [View Lab](./IT-Delegation-and-Access-Control/) |
+| Lab                              | Description                                                                                    | Link                                            |
+| -------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Active Directory                 | Domain Controller setup, OU structure, users, groups, and client domain join                   | [View Lab](./Active-Directory/)                 |
+| Group Policy                     | GPO configuration, workstation policies, restrictions, and client-side validation              | [View Lab](./GPO/)                              |
+| File Server                      | Shared folders, NTFS permissions, security groups, and mapped drives                           | [View Lab](./File-Server/)                      |
+| Backup and Recovery              | Windows Server Backup, restore testing, and recovery validation                                | [View Lab](./Backup-Recovery/)                  |
+| IT Delegation and Access Control | Role-based IT access using privileged accounts, AD delegation, GPO, RSAT, and audit validation | [View Lab](./IT-Delegation-and-Access-Control/) |
 
 ---
 
