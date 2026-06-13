@@ -1,20 +1,22 @@
-# Windows Server Infrastructure Labs
+# Windows Server Infrastructure Lab
 
-This section documents my hands-on Windows Server infrastructure labs using VMware.
+This project documents my hands-on Windows Server infrastructure lab using VMware.
 
-The labs focus on core Windows Server administration tasks such as Active Directory, Group Policy, file server permissions, backup and recovery, and role-based IT access control.
+The lab covers core Windows Server administration tasks such as Active Directory, DNS, DHCP, Group Policy, File Server permissions, Backup and Recovery, and role-based IT access control.
 
 ---
 
 ## Lab Sections
 
-| Lab                              | Description                                                                                    | Link                                            |
-| -------------------------------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| Active Directory                 | Domain Controller setup, OU structure, users, groups, and client domain join                   | [View Lab](./Active-Directory/)                 |
-| Group Policy                     | GPO configuration, workstation policies, restrictions, and client-side validation              | [View Lab](./GPO/)                              |
-| File Server                      | Shared folders, NTFS permissions, security groups, and mapped drives                           | [View Lab](./File-Server/)                      |
-| Backup and Recovery              | Windows Server Backup, restore testing, and recovery validation                                | [View Lab](./Backup-Recovery/)                  |
-| IT Delegation and Access Control | Role-based IT access using privileged accounts, AD delegation, GPO, RSAT, and audit validation | [View Lab](./IT-Delegation-and-Access-Control/) |
+| Lab                              | Description                                                                                                                                |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | 
+| [Active Directory](./Active-Directory/)                 | Domain Controller setup, OU structure, users, groups, and client domain join                                        |
+| [DNS](./DNS/)                              | Forward lookup zones, reverse lookup zones, A records, PTR records, CNAME records, and DNS validation                            |
+| [DHCP](./DHCP/)                             | DHCP scope configuration, address pool, scope options, leases, reservation, and client IP renewal testing                       |
+| [Group Policy](./GPO/)                      | GPO configuration, workstation policies, restrictions, and client-side validation                                               |
+| [File Server](./File-Server/)                      | Shared folders, NTFS permissions, security groups, and mapped drives                                                     |
+| [Backup and Recovery](./Backup-Recovery/)               | Windows Server Backup, restore testing, and recovery validation                                                     |
+| [IT Delegation and Access Control](./IT-Delegation-and-Access-Control/) | Role-based IT access model using privileged accounts, AD delegation, GPO, RSAT, and audit validation|
 
 ---
 
@@ -23,6 +25,8 @@ The labs focus on core Windows Server administration tasks such as Active Direct
 * Domain Controller setup
 * Active Directory users, OUs, and groups
 * PowerShell bulk user creation
+* DNS records and name resolution testing
+* DHCP scope, leases, reservations, and client renewal
 * Group Policy management
 * File Server shared folders
 * NTFS permissions
@@ -41,6 +45,8 @@ The labs focus on core Windows Server administration tasks such as Active Direct
 
 * Windows Server Administration
 * Active Directory
+* DNS Administration
+* DHCP Administration
 * Group Policy
 * File Server Administration
 * NTFS Permissions
