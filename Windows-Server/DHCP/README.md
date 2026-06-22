@@ -17,7 +17,7 @@ In this lab, I reviewed the DHCP scope, address pool, scope options, active leas
 | Domain             | Days.local                                   |
 | DHCP Server        | DC01                                         |
 | Scope Network      | 192.168.1.0                                  |
-| Address Pool       | 192.168.1.20 - 192.168.1.100                 |
+| Address Pool       | 192.168.1.20 - 192.168.1.99                  |
 | Scope Options      | Router, DNS Server, DNS Domain Name          |
 | Client Machines    | IT-PC, HR-PC                                 |
 | Reserved Client    | HR-PC                                        |
