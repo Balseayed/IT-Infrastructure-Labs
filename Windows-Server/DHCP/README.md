@@ -46,7 +46,7 @@ The address pool defines the range of IP addresses that the DHCP server can assi
 In this lab, the DHCP scope uses the following range:
 
 ```text
-192.168.1.20 - 192.168.1.100
+192.168.1.20 - 192.168.1.99
 ```
 
 ![Address Pool](Screenshots/03-address-pool.png)
