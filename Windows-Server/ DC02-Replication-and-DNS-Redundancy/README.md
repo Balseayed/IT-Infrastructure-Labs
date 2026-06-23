@@ -199,19 +199,7 @@ This helped isolate the DNS test without affecting DHCP and basic network connec
 | Direct DNS resolution using DC02               | Passed    |
 | Troubleshooting DNS test behavior              | Completed |
 
----
 
-## What I Learned
-
-In this lab, I learned that adding a second Domain Controller is not the same as backup.
-
-DC02 improves availability, but if an object is deleted from DC01, the deletion can replicate to DC02.
-
-I also learned that DNS redundancy must be tested carefully.
-
-Powering off the whole server is not always a clean test, especially if the same server is also providing DHCP or gateway settings.
-
-A better test is to stop only the DNS service and then verify the second DNS server directly.
 
 ---
 
