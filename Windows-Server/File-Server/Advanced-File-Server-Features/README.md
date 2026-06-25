@@ -6,6 +6,10 @@ In this upgrade, I moved the File Server role to a dedicated server named `FS01`
 
 The goal was to separate file services from the Domain Controller and make the design closer to a real infrastructure environment.
 
+FS01 was joined to the `Days.local` domain and configured with the IP address `192.168.1.12`.
+
+![FS01 Local Server](./Screenshots/00-FS01-Local-Server.png)
+
 The new shared path is:
 
 ```text
