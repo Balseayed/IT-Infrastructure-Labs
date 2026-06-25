@@ -28,7 +28,7 @@ D:\Company
 └── Sales
 ```
 
-![Company Department Folders](./Screenshots/01-company-department-folders.png)
+![Company Department Folders](./Screenshots/01-Company-Department-Folders.png)
 
 ---
 
@@ -42,7 +42,7 @@ Users can access the share using this network path:
 \\FS01\Company
 ```
 
-![Company Share Created](./Screenshots/02-company-share-created.png)
+![Company Share Created](./Screenshots/02-Share-Company-Folder.png)
 
 ---
 
@@ -59,7 +59,7 @@ HR folder      → FS-HR-Modify
 Finance folder → FS-FIN-Modify
 ```
 
-![NTFS Department Permissions](./Screenshots/03-ntfs-department-permissions.png)
+![NTFS Department Permissions](./Screenshots/03-setup-NTFS-permissions.png)
 
 ---
 
@@ -69,7 +69,7 @@ Access was tested using an HR user.
 
 The HR user was not able to access the Finance folder.
 
-![HR User Denied Finance Folder](./Screenshots/05-hr-user-denied-finance-folder.png)
+![HR User Denied Finance Folder](./Screenshots/05-HR-cannot-open-FIN.png)
 
 This confirms that access is controlled by NTFS permissions and security group membership.
 
@@ -85,7 +85,7 @@ The mapped drive was configured as:
 H: → \\FS01\Company
 ```
 
-![GPO Drive Map Settings](./Screenshots/06-gpo-drive-map-settings.png)
+![GPO Drive Map Settings](./Screenshots/06-GPO-MapDrive.png)
 
 The policy was verified using:
 
@@ -95,11 +95,11 @@ gpresult /r
 
 The result showed that `Map-Company-Drive` was applied successfully.
 
-![GPO Applied](./Screenshots/07-gpresult-map-company-drive-applied.png)
+![GPO Applied](./Screenshots/07-verify-using-gpresult.png)
 
 The mapped drive appeared on the client machine as `Company Share (H:)`.
 
-![Company Share H Drive](./Screenshots/08-company-share-h-drive-visible.png)
+![Company Share H Drive](./Screenshots/08-CompanyShare-shown.png)
 
 ---
 
@@ -112,4 +112,3 @@ The company share is available through `\\FS01\Company`.
 Users receive the mapped drive through Group Policy.
 
 Access is still controlled by NTFS permissions and security groups.
-
