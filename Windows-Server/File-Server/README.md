@@ -52,7 +52,7 @@ It includes:
 
 ```text
 File-Server/
-├── Department-File-Share-and-NTFS-Permissions/
+├── Basic-Department-Share-and-NTFS/
 └── Advanced-File-Server-Features/
 ```
 
