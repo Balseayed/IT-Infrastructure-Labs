@@ -25,7 +25,7 @@ It includes:
 * Testing user access between departments.
 * Mapping the shared folder using Group Policy.
 
-[Open Lab](./Department-File-Share-and-NTFS-Permissions)
+[Open Lab](./Basic-Department-Share-and-NTFS)
 
 ---
 
