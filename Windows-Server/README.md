@@ -18,6 +18,7 @@ The lab covers core Windows Server administration tasks such as Active Directory
 | [File Server](./File-Server/)                      | Shared folders, NTFS permissions, security groups, and mapped drives                                                     |
 | [Backup and Recovery](./Backup-Recovery/)               | Windows Server Backup, restore testing, and recovery validation                                                     |
 | [IT Delegation and Access Control](./IT-Delegation-and-Access-Control/) | Role-based IT access model using privileged accounts, AD delegation, GPO, RSAT, and audit validation|
+| [Operations and Maintenance](./Operations-and-Maintenance/) | Controlled restart of FS01 followed by post-maintenance service validation |
 | [Readiness Evidence](./Readiness-Evidence/Evidence-Matrix.md) | Implementation status, verification evidence, completed scope, and safe next upgrades |
 
 ---
